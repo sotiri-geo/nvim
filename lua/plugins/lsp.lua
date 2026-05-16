@@ -14,7 +14,7 @@ require("mason-lspconfig").setup({
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
-            diagnosticr = {
+            diagnostics = {
                 globals = { "vim" },
             },
             workspace = {
