@@ -7,6 +7,7 @@ require("mason-lspconfig").setup({
         "gopls",
         "lua_ls",
         "pyright",
+        "ruff",
     },
 })
 
@@ -41,8 +42,27 @@ vim.lsp.config("gopls", {
     },
 })
 
--- Python server
-vim.lsp.config("pyright", {})
+-- Python server: 
+vim.lsp.config("pyright", {
+    settings = {
+        pyright = {
+            disableOrganizeImports = true,
+        },
+        python = {
+            analysis = {
+                -- Keep pyright for typechecking
+                typeCheckingMode = "basic",
+            },
+        },
+    },
+})
+
+-- Ruff server: Linting, formatting, organising imports 
+vim.lsp.config("ruff", {
+    on_attach = function(client) 
+        client.server_capabilities.hoverProvider = false
+    end,
+})
 
 -- Add to the list of servers if required
 vim.lsp.enable({
