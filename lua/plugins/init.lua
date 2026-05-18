@@ -1,20 +1,33 @@
 vim.pack.add({
-    -- Syntax highlighting
-    "https://github.com/nvim-treesitter/nvim-treesitter",
+    -- Syntax highlightinig
+    {src = "https://github.com/nvim-treesitter/nvim-treesitter", version = vim.version.range("*")},
 
-    -- LSP
-    "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/mason-org/mason.nvim",
-    "https://github.com/mason-org/mason-lspconfig.nvim",
+    -- Syntax highlighting (Treesitter recommends locking to a specific commit or using stable)
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = vim.version.range("*") },
 
-    -- Picker
-    "https://github.com/nvim-mini/mini.pick",
+    -- LSP Core 
+    { src = "https://github.com/neovim/nvim-lspconfig", version = vim.version.range("*") },
+    { src = "https://github.com/williamboman/mason.nvim", version = vim.version.range("*") },
+    { src = "https://github.com/williamboman/mason-lspconfig.nvim", version = vim.version.range("*") },
 
-    -- Themes
-    "https://github.com/rebelot/kanagawa.nvim"
+    -- Mini Ecosystem 
+    { src = "https://github.com/echasnovski/mini.pick", version = "stable" },
+    { src = "https://github.com/echasnovski/mini.files", version = "stable" },
+    { src = 'https://github.com/nvim-mini/mini.pairs', version = 'stable' },
+
+    -- Completion 
+    { src = "https://github.com/saghen/blink.lib" },
+    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+
+    -- Themes 
+    { src = "https://github.com/rebelot/kanagawa.nvim", version = vim.version.range("*") },
+
 })
 
 require("plugins.theme")
 require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.picker")
+require("plugins.files")
+require("plugins.completion")
+require("plugins.pairs")

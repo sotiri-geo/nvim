@@ -8,3 +8,10 @@ map("n", "<leader>wn", "<C-w>h", { desc = "Window left" })
 map("n", "<leader>we", "<C-w>j", { desc = "Window down" })
 map("n", "<leader>wi", "<C-w>k", { desc = "Window up" })
 map("n", "<leader>wo", "<C-w>l", { desc = "Window right" })
+
+-- Toggle mini.files
+map("n", "<leader>e", function()
+    if not require("mini.files").close() then
+        require("mini.files").open()
+    end
+end, { desc = "Toggle mini.files (cwd)" })

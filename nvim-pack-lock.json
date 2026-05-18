@@ -1,28 +1,53 @@
 {
   "plugins": {
+    "blink.cmp": {
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "blink.lib": {
+      "rev": "f29d8bac6549bc1e7d699c83f680823d7def98bd",
+      "src": "https://github.com/saghen/blink.lib"
+    },
     "kanagawa.nvim": {
       "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
-      "src": "https://github.com/rebelot/kanagawa.nvim"
+      "src": "https://github.com/rebelot/kanagawa.nvim",
+      "version": ">=0.0.0"
     },
     "mason-lspconfig.nvim": {
       "rev": "eaa34887d444cb002e1b165fac399ae4bbc771f7",
-      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim",
+      "version": ">=0.0.0"
     },
     "mason.nvim": {
       "rev": "8e921c2b68571e978db5d4d3fef9c9a7f8755473",
-      "src": "http://github.com/mason-org/mason.nvim"
+      "src": "http://github.com/mason-org/mason.nvim",
+      "version": ">=0.0.0"
+    },
+    "mini.files": {
+      "rev": "5e0f0d264166e71d37ca35d84c54b1887ea76b40",
+      "src": "https://github.com/nvim-mini/mini.files",
+      "version": "'stable'"
+    },
+    "mini.pairs": {
+      "rev": "d5a29b6254dad07757832db505ea5aeab9aad43a",
+      "src": "https://github.com/nvim-mini/mini.pairs",
+      "version": "'stable'"
     },
     "mini.pick": {
       "rev": "975e398570dd15696575c5374f94e78fd29a7a69",
-      "src": "https://github.com/nvim-mini/mini.pick"
+      "src": "https://github.com/nvim-mini/mini.pick",
+      "version": "'stable'"
     },
     "nvim-lspconfig": {
       "rev": "8f7e64066e2641d5e7d494962a9c7051e3d38dd5",
-      "src": "https://github.com/neovim/nvim-lspconfig"
+      "src": "https://github.com/neovim/nvim-lspconfig",
+      "version": ">=0.0.0"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": ">=0.0.0"
     }
   }
 }
