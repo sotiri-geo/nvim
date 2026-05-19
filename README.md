@@ -38,6 +38,12 @@ Mapped to match the Miryoku navigation layer on the right hand.
 | `<leader>bp` | Previous Buffer | Cycles to the previous open buffer |
 | `<leader>bd` | Delete Buffer | Closes the current buffer |
 
+### Terminal Management
+| Key | Action | Description |
+|-----|--------|-------------|
+| `<Esc><Esc>` | Exit Terminal Mode | Switch back to normal mode from terminal |
+| `<leader>t` | Terminal Split | Open terminal in a vertical split |
+
 ---
 
 ## 🚀 Workflows
@@ -63,6 +69,11 @@ To work on two or more files simultaneously:
     *   `:vertical resize +5` (make vertical split wider)
     *   `:resize +5` (make horizontal split taller)
 *   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, press **`<leader>bd`**.
+
+### Terminal Integration
+1.  **Open a Terminal**: Press **`<leader>t`** to instantly open a new terminal in a vertical split next to your code.
+2.  **Exit Terminal Mode**: When typing in the terminal, you are in Terminal-Mode. To navigate back to your code, you must exit this mode by pressing **`<Esc><Esc>`** (double-tap Escape).
+3.  **Navigate**: Once back in Normal mode, use `<C-m>` to move back to your code window. You can interact with the terminal buffer just like any other file!
 
 ### Autocomplete & Documentation
 This config uses `blink.cmp` for autocomplete and LSP for documentation.
