@@ -6,7 +6,10 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	once = true,
 	callback = function()
 		require("blink.cmp").setup({
-            keymap = { preset = "default" },
+            keymap = { 
+                preset = "default",
+                ["<Tab>"] = { "select_and_accept", "fallback" },
+            },
             sources = {
                 default = { "lsp", "path", "buffer" },
             },

@@ -17,6 +17,7 @@ map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer", silent = true }
 -- Terminal navigation
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("n", "<leader>t", "<C-w>v<cmd>term<cr>", { desc = "Open terminal vertically" })
+map("n", "<leader>tx", ":bdelete!<CR>", { desc = "Kill current terminal buffer", silent = true })
 
 -- Toggle mini.files
 map("n", "<leader>e", function()

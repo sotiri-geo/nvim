@@ -43,6 +43,7 @@ Mapped to match the Miryoku navigation layer on the right hand.
 |-----|--------|-------------|
 | `<Esc><Esc>` | Exit Terminal Mode | Switch back to normal mode from terminal |
 | `<leader>t` | Terminal Split | Open terminal in a vertical split |
+| `<leader>tx` | Kill Terminal | Force delete the current terminal buffer |
 
 ---
 
@@ -80,6 +81,7 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 
 *   **Completion Menu**: Documentation is **not** shown automatically to keep the UI clean.
     *   While the completion menu is open, press **`<C-space>`** to toggle the documentation window.
+*   **Accept Selection**: While the completion menu is open, press **`<Tab>`** to select and accept the current suggestion.
 *   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`K`** (Shift + k).
 
 ### File System Management (`mini.files`)
