@@ -10,6 +10,8 @@ map("n", "<C-e>", "<C-w>k", { desc = "Window up" })
 map("n", "<C-o>", "<C-w>l", { desc = "Window right" })
 map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>h", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer", silent = true })
+map("n", "<leader>bp", ":bprevious<CR>", { desc = "Next previous", silent = true })
 
 -- Toggle mini.files
 map("n", "<leader>e", function()
