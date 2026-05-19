@@ -45,6 +45,12 @@ Mapped to match the Miryoku navigation layer on the right hand.
 | `<leader>t` | Terminal Split | Open terminal in a vertical split |
 | `<leader>tx` | Kill Terminal | Force delete the current terminal buffer |
 
+### LSP Actions
+| Key | Action | Description |
+|-----|--------|-------------|
+| `gd` | Go to definition | Jumps to the definition of the symbol under the cursor |
+| `gD` | Go to declaration | Jumps to the declaration of the symbol under the cursor |
+
 ---
 
 ## 🚀 Workflows

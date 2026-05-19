@@ -64,6 +64,17 @@ vim.lsp.config("ruff", {
     end,
 })
 
+-- LSP Attach Autocommand for buffer-local keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+        -- Buffer local mappings
+        -- See `:help vim.lsp.*` for docs on any of the below functions
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "LSP: Go to declaration"})
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "LSP: Go to definition"})
+    end,
+})
+
 -- Add to the list of servers if required
 vim.lsp.enable({
     "gopls",
