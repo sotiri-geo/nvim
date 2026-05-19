@@ -31,6 +31,13 @@ Mapped to match the Miryoku navigation layer on the right hand.
 | `<leader>fb` | Find Buffers |
 | `<leader>fh` | Help Tags |
 
+### Buffer Management
+| Key | Action | Description |
+|-----|--------|-------------|
+| `<leader>bn` | Next Buffer | Cycles to the next open buffer |
+| `<leader>bp` | Previous Buffer | Cycles to the previous open buffer |
+| `<leader>bd` | Delete Buffer | Closes the current buffer |
+
 ---
 
 ## 🚀 Workflows
@@ -55,7 +62,7 @@ To work on two or more files simultaneously:
 *   **Resize Splits**: Use Neovim's default resize commands if needed:
     *   `:vertical resize +5` (make vertical split wider)
     *   `:resize +5` (make horizontal split taller)
-*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, type `:bd` (Buffer Delete).
+*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, press **`<leader>bd`**.
 
 ### Autocomplete & Documentation
 This config uses `blink.cmp` for autocomplete and LSP for documentation.
