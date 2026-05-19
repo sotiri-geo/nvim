@@ -9,7 +9,7 @@ map("n", "<C-n>", "<C-w>j", { desc = "Window down" })
 map("n", "<C-e>", "<C-w>k", { desc = "Window up" })
 map("n", "<C-o>", "<C-w>l", { desc = "Window right" })
 map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
-map("n", "<leader>h", "<C-w>v", { desc = "Split window horizontally" })
+map("n", "<leader>h", "<C-w>s", { desc = "Split window horizontally" })
 
 -- Toggle mini.files
 map("n", "<leader>e", function()

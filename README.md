@@ -4,15 +4,17 @@ This configuration is optimized for a **Colemak-DH** keyboard layout using the *
 
 ## ⌨️ Custom Keymaps
 
-### Window Navigation (Colemak-DH)
+### Window Navigation & Management (Colemak-DH)
 Mapped to match the Miryoku navigation layer on the right hand.
 
-| Key | Action | Miryoku Position |
+| Key | Action | Miryoku Position / Description |
 |-----|--------|-----------------|
 | `<C-m>` | Focus window **Left** | Index |
 | `<C-n>` | Focus window **Down** | Middle |
 | `<C-e>` | Focus window **Up** | Ring |
 | `<C-o>` | Focus window **Right** | Pinky |
+| `<leader>v` | Split window **Vertically** | Action |
+| `<leader>h` | Split window **Horizontally** | Action |
 
 ### Global Actions
 | Key | Action | Description |
@@ -33,15 +35,27 @@ Mapped to match the Miryoku navigation layer on the right hand.
 
 ## 🚀 Workflows
 
-### Side-by-Side Editing
-To work on two files simultaneously:
+### Side-by-Side Editing & Buffer Management
+To work on two or more files simultaneously:
 
-1.  **Split the window**: Press `<C-w>v` (vertical) or `<C-w>s` (horizontal).
+1.  **Split the window**: Press `<leader>v` (vertical split) or `<leader>h` (horizontal split).
 2.  **Navigate to the new split**: Use your directional keys (e.g., `<C-o>` to move right into a new vertical split).
 3.  **Open a file**:
     *   Press `<leader>ff` to search for a file and open it in the active split.
     *   Press `<leader>e` to open the file explorer and navigate to a file.
+    *   Press `<leader>fb` to pick from already open buffers.
 4.  **Jump between them**: Use `<C-m>` and `<C-o>` to bounce between your side-by-side buffers.
+5.  **Save and Close**:
+    *   When you are done editing a side-by-side buffer, make sure you save your changes by pressing `<leader>w`.
+    *   To close the active split/window, press `<leader>q`. This will hide the split without closing your other windows.
+    *   *(Note: You can also use standard Neovim commands like `:wq` to save and quit the window simultaneously, or `:qa` to quit all windows).*
+
+### Advanced Split Tips
+*   **Maximized View**: To quickly close all other splits and focus ONLY on the current one, type `:only` and press Enter.
+*   **Resize Splits**: Use Neovim's default resize commands if needed:
+    *   `:vertical resize +5` (make vertical split wider)
+    *   `:resize +5` (make horizontal split taller)
+*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, type `:bd` (Buffer Delete).
 
 ### Autocomplete & Documentation
 This config uses `blink.cmp` for autocomplete and LSP for documentation.
