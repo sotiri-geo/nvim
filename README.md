@@ -12,7 +12,7 @@ Mapped to match the Miryoku navigation layer on the right hand.
 | `<C-m>` | Focus window **Left** | Index |
 | `<C-n>` | Focus window **Down** | Middle |
 | `<C-e>` | Focus window **Up** | Ring |
-| `<C-o>` | Focus window **Right** | Pinky |
+| `<C-i>` | Focus window **Right** | Pinky |
 | `<leader>v` | Split window **Vertically** | Action |
 | `<leader>h` | Split window **Horizontally** | Action |
 
@@ -34,9 +34,9 @@ Mapped to match the Miryoku navigation layer on the right hand.
 ### Buffer Management
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>bn` | Next Buffer | Cycles to the next open buffer |
-| `<leader>bp` | Previous Buffer | Cycles to the previous open buffer |
-| `<leader>bd` | Delete Buffer | Closes the current buffer |
+| `<leader>.` | Next Buffer | Cycles to the next open buffer |
+| `<leader>,` | Previous Buffer | Cycles to the previous open buffer |
+| `<leader>c` | Delete Buffer | Closes the current buffer |
 
 ### Terminal Management
 | Key | Action | Description |
@@ -48,8 +48,16 @@ Mapped to match the Miryoku navigation layer on the right hand.
 ### LSP Actions
 | Key | Action | Description |
 |-----|--------|-------------|
-| `gd` | Go to definition | Jumps to the definition of the symbol under the cursor |
-| `gD` | Go to declaration | Jumps to the declaration of the symbol under the cursor |
+| `gd` | Go to definition | Jumps to the definition |
+| `gD` | Go to declaration | Jumps to the declaration |
+| `gr` | References | List all references |
+| `gi` | Implementation | Go to implementation |
+| `<leader>i` | Hover Info | Show documentation/type info |
+| `<leader>cr` | Rename | Rename symbol workspace-wide |
+| `<leader>ca` | Code Action | Show available code actions |
+| `<leader>dn` | Next Diagnostic | Jump to next error/warning |
+| `<leader>dp` | Prev Diagnostic | Jump to previous error/warning |
+| `<leader>df` | Floating Diagnostic | Show diagnostic in a floating window |
 
 ---
 
@@ -59,12 +67,12 @@ Mapped to match the Miryoku navigation layer on the right hand.
 To work on two or more files simultaneously:
 
 1.  **Split the window**: Press `<leader>v` (vertical split) or `<leader>h` (horizontal split).
-2.  **Navigate to the new split**: Use your directional keys (e.g., `<C-o>` to move right into a new vertical split).
+2.  **Navigate to the new split**: Use your directional keys (e.g., `<C-i>` to move right into a new vertical split).
 3.  **Open a file**:
     *   Press `<leader>ff` to search for a file and open it in the active split.
     *   Press `<leader>e` to open the file explorer and navigate to a file.
     *   Press `<leader>fb` to pick from already open buffers.
-4.  **Jump between them**: Use `<C-m>` and `<C-o>` to bounce between your side-by-side buffers.
+4.  **Jump between them**: Use `<C-m>` and `<C-i>` to bounce between your side-by-side buffers.
 5.  **Save and Close**:
     *   When you are done editing a side-by-side buffer, make sure you save your changes by pressing `<leader>w`.
     *   To close the active split/window, press `<leader>q`. This will hide the split without closing your other windows.
@@ -75,7 +83,7 @@ To work on two or more files simultaneously:
 *   **Resize Splits**: Use Neovim's default resize commands if needed:
     *   `:vertical resize +5` (make vertical split wider)
     *   `:resize +5` (make horizontal split taller)
-*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, press **`<leader>bd`**.
+*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, press **`<leader>c`**.
 
 ### Terminal Integration
 1.  **Open a Terminal**: Press **`<leader>t`** to instantly open a new terminal in a vertical split next to your code.
@@ -88,7 +96,8 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 *   **Completion Menu**: Documentation is **not** shown automatically to keep the UI clean.
     *   While the completion menu is open, press **`<C-space>`** to toggle the documentation window.
 *   **Accept Selection**: While the completion menu is open, press **`<Tab>`** to select and accept the current suggestion.
-*   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`K`** (Shift + k).
+*   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`<leader>i`**.
+
 
 ### File System Management (`mini.files`)
 *   **Toggle**: Press `<leader>e`.
