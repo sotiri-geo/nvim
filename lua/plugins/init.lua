@@ -13,7 +13,8 @@ vim.pack.add({
     -- Mini Ecosystem 
     { src = "https://github.com/echasnovski/mini.pick", version = "stable" },
     { src = "https://github.com/echasnovski/mini.files", version = "stable" },
-    { src = 'https://github.com/nvim-mini/mini.pairs', version = 'stable' },
+    { src = "https://github.com/nvim-mini/mini.pairs", version = "stable" },
+    { src = "https://github.com/nvim-mini/mini.icons", version = "stable" },
 
     -- Completion 
     { src = "https://github.com/saghen/blink.lib" },
@@ -31,3 +32,4 @@ require("plugins.picker")
 require("plugins.files")
 require("plugins.completion")
 require("plugins.pairs")
+require("plugins.icons")

@@ -4,10 +4,12 @@ map("n", "<leader>w", "<cmd>write<cr>", { desc = "Save file" })
 map("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit window" })
 
 -- Colemak-DH/Miryoku window using navigation layer 
-map("n", "<leader>wn", "<C-w>h", { desc = "Window left" })
-map("n", "<leader>we", "<C-w>j", { desc = "Window down" })
-map("n", "<leader>wi", "<C-w>k", { desc = "Window up" })
-map("n", "<leader>wo", "<C-w>l", { desc = "Window right" })
+map("n", "<C-m>", "<C-w>h", { desc = "Window left" })
+map("n", "<C-n>", "<C-w>j", { desc = "Window down" })
+map("n", "<C-e>", "<C-w>k", { desc = "Window up" })
+map("n", "<C-o>", "<C-w>l", { desc = "Window right" })
+map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>h", "<C-w>v", { desc = "Split window horizontally" })
 
 -- Toggle mini.files
 map("n", "<leader>e", function()
