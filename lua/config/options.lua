@@ -11,3 +11,4 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.hidden = true
+vim.opt.hlsearch = false
