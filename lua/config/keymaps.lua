@@ -1,10 +1,11 @@
 local map = vim.keymap.set
 
 -- Colemak-DH/Miryoku window using navigation layer 
-map("n", "<C-m>", "<C-w>h", { desc = "Window left" })
-map("n", "<C-n>", "<C-w>j", { desc = "Window down" })
-map("n", "<C-e>", "<C-w>k", { desc = "Window up" })
-map("n", "<C-i>", "<C-w>l", { desc = "Window right" })
+map("n", "<A-m>", "<C-w>h", { desc = "Window left" })
+map("n", "<A-n>", "<C-w>j", { desc = "Window down" })
+map("n", "<A-e>", "<C-w>k", { desc = "Window up" })
+map("n", "<A-i>", "<C-w>l", { desc = "Window right" })
+
 map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>h", "<C-w>s", { desc = "Split window horizontally" })
 -- Buffer navigation
