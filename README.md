@@ -21,6 +21,9 @@ Mapped to match the Miryoku navigation layer on the right hand.
 > To prevent these global window navigation maps from breaking `Enter` in specific windows, buffer-local overrides are applied:
 > - **Quickfix / References:** `Enter` is restored to its default jump-to-file behavior (see `lua/config/autocmds.lua`).
 
+### Window Split
+| Key | Action | Description |
+|-----|--------|-------------|
 | `<leader>v` | Split window **Vertically** | Action |
 | `<leader>h` | Split window **Horizontally** | Action |
 
