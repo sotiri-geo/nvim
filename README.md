@@ -19,8 +19,6 @@ Mapped to match the Miryoku navigation layer on the right hand.
 ### Global Actions
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>w` | Save File | Writes current buffer to disk |
-| `<leader>q` | Quit | Closes the current window |
 | `<leader>e` | File Explorer | Toggle `mini.files` (cwd) |
 
 ### Picker (`mini.pick`)
@@ -74,9 +72,9 @@ To work on two or more files simultaneously:
     *   Press `<leader>fb` to pick from already open buffers.
 4.  **Jump between them**: Use `<C-m>` and `<C-i>` to bounce between your side-by-side buffers.
 5.  **Save and Close**:
-    *   When you are done editing a side-by-side buffer, make sure you save your changes by pressing `<leader>w`.
-    *   To close the active split/window, press `<leader>q`. This will hide the split without closing your other windows.
-    *   *(Note: You can also use standard Neovim commands like `:wq` to save and quit the window simultaneously, or `:qa` to quit all windows).*
+    *   When you are done editing a side-by-side buffer, make sure you save your changes by typing **`:w`** and pressing Enter.
+    *   To close the active split/window, type **`:q`** and press Enter. This will hide the split without closing your other windows.
+    *   *(Note: You can also combine these into `:wq` to save and quit the window simultaneously, or use `:qa` to quit all windows).*
 
 ### Advanced Split Tips
 *   **Maximized View**: To quickly close all other splits and focus ONLY on the current one, type `:only` and press Enter.
@@ -102,4 +100,4 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 ### File System Management (`mini.files`)
 *   **Toggle**: Press `<leader>e`.
 *   **Navigation**: Use standard movement keys. It includes a **preview window** on the right.
-*   **Editing**: You can rename, create, or move files by editing the text in the explorer buffer and saving it (`<leader>w`).
+*   **Editing**: You can rename, create, or move files by editing the text in the explorer buffer and saving it (**`:w`**).
