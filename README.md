@@ -23,7 +23,8 @@ Mapped to match the Miryoku navigation layer on the right hand. Using the **<lea
 ### Global Actions
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>e` | File Explorer | Toggle `mini.files` (cwd) |
+| `<leader>e` | File Explorer | Toggle `mini.files` (relative to current file) |
+| `<leader>E` | File Explorer | Toggle `mini.files` (cwd) |
 
 ### Picker (`mini.pick`)
 | Key | Action |
@@ -72,7 +73,7 @@ To work on two or more files simultaneously:
 2.  **Navigate to the new split**: Use your directional keys (e.g., `<leader>wo` to move right into a new vertical split).
 3.  **Open a file**:
     *   Press `<leader>ff` to search for a file and open it in the active split.
-    *   Press `<leader>e` to open the file explorer and navigate to a file.
+    *   Press `<leader>e` (relative to current file) or `<leader>E` (cwd) to open the file explorer and navigate to a file.
     *   Press `<leader>fb` to pick from already open buffers.
 4.  **Jump between them**: Use `<leader>wn` and `<leader>wo` to bounce between your side-by-side buffers.
 5.  **Save and Close**:
@@ -102,6 +103,6 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 
 
 ### File System Management (`mini.files`)
-*   **Toggle**: Press `<leader>e`.
+*   **Toggle**: Press `<leader>e` to open relative to the current file, or `<leader>E` to open from the project root (cwd).
 *   **Navigation**: Use standard movement keys. It includes a **preview window** on the right.
 *   **Editing**: You can rename, create, or move files by editing the text in the explorer buffer and saving it (**`:w`**).

@@ -17,9 +17,15 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("n", "<leader>t", "<C-w>v<cmd>term<cr>", { desc = "Open terminal vertically" })
 map("n", "<leader>tx", ":bdelete!<CR>", { desc = "Kill current terminal buffer", silent = true })
 
--- Toggle mini.files
+-- Toggle mini.files: Explorer relative to current file
 map("n", "<leader>e", function()
+    local buf_name = vim.api.nvim_buf_get_name(0)
     if not require("mini.files").close() then
-        require("mini.files").open()
+        require("mini.files").open(buf_name ~="" and buf_name or nil)
     end
-end, { desc = "Toggle mini.files (cwd)" })
+end, { desc = "Files: current file" })
+
+-- Explorer from project root
+map("n", "<leader>E", function ()
+    require("mini.files").open()
+end, { desc = "Files: cwd"})
