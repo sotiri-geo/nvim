@@ -9,6 +9,10 @@
       "rev": "f29d8bac6549bc1e7d699c83f680823d7def98bd",
       "src": "https://github.com/saghen/blink.lib"
     },
+    "gitsigns.nvim": {
+      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "kanagawa.nvim": {
       "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
       "src": "https://github.com/rebelot/kanagawa.nvim",
@@ -23,6 +27,11 @@
       "rev": "8e921c2b68571e978db5d4d3fef9c9a7f8755473",
       "src": "http://github.com/mason-org/mason.nvim",
       "version": ">=0.0.0"
+    },
+    "mini.extra": {
+      "rev": "31f82562238a4fadd30997757ead6c7f1770e7ea",
+      "src": "https://github.com/nvim-mini/mini.extra",
+      "version": "'stable'"
     },
     "mini.files": {
       "rev": "5e0f0d264166e71d37ca35d84c54b1887ea76b40",
@@ -44,6 +53,10 @@
       "src": "https://github.com/nvim-mini/mini.pick",
       "version": "'stable'"
     },
+    "mini.statusline": {
+      "rev": "e9e5c147385e5e0310ab79162dd08d0465e96d83",
+      "src": "https://github.com/nvim-mini/mini.statusline"
+    },
     "mini.visits": {
       "rev": "f6b86565acc690aa111627433906be3d38e2ba81",
       "src": "https://github.com/nvim-mini/mini.visits",
@@ -58,6 +71,10 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": ">=0.0.0"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

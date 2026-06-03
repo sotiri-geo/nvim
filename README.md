@@ -33,6 +33,7 @@ Mapped to match the Miryoku navigation layer on the right hand. Using the **<lea
 | `<leader>fg` | Live Grep |
 | `<leader>fb` | Find Buffers |
 | `<leader>fh` | Help Tags |
+| `<leader>fv` | Recent Visited Files (current cwd/project) |
 
 ### Buffer Management
 | Key | Action | Description |
@@ -106,3 +107,10 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 *   **Toggle**: Press `<leader>e` to open relative to the current file, or `<leader>E` to open from the project root (cwd).
 *   **Navigation**: Use standard movement keys. It includes a **preview window** on the right.
 *   **Editing**: You can rename, create, or move files by editing the text in the explorer buffer and saving it (**`:w`**).
+
+### Recent Files (`mini.visits` + `mini.pick`)
+This config uses `mini.visits` to track files you actually visit, and `mini.extra` to expose those visits through the `mini.pick` UI.
+
+*   **Project Recent Files**: Press `<leader>fv` to show visited files for the current working directory/project.
+*   **Ordering**: Results are sorted by recency, so the most recently visited files appear first.
+*   **Scope**: The picker is intentionally scoped to the current `:pwd`. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.

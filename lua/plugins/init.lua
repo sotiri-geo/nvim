@@ -15,7 +15,8 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.files", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.pairs", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.icons", version = "stable" },
-    { src = 'https://github.com/nvim-mini/mini.visits', version = 'stable' },
+    { src = "https://github.com/nvim-mini/mini.visits", version = "stable" },
+    { src = "https://github.com/nvim-mini/mini.extra", version = "stable" },
 
     -- Completion 
     { src = "https://github.com/saghen/blink.lib" },
