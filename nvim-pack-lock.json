@@ -44,6 +44,11 @@
       "src": "https://github.com/nvim-mini/mini.pick",
       "version": "'stable'"
     },
+    "mini.visits": {
+      "rev": "f6b86565acc690aa111627433906be3d38e2ba81",
+      "src": "https://github.com/nvim-mini/mini.visits",
+      "version": "'stable'"
+    },
     "nvim-lspconfig": {
       "rev": "8f7e64066e2641d5e7d494962a9c7051e3d38dd5",
       "src": "https://github.com/neovim/nvim-lspconfig",
