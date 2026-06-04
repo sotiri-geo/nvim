@@ -113,4 +113,4 @@ This config uses `mini.visits` to track files you actually visit, and `mini.extr
 
 *   **Project Recent Files**: Press `<leader>fv` to show visited files for the current working directory/project.
 *   **Ordering**: Results are sorted by recency, so the most recently visited files appear first.
-*   **Scope**: The picker is intentionally scoped to the current `:pwd`. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.
+*   **Scope**: The picker is strictly scoped to the current `:pwd`. Visited files that lie physically outside of your current working directory (CWD) are filtered out automatically. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.
