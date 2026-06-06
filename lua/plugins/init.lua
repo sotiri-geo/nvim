@@ -1,8 +1,5 @@
 vim.pack.add({
     -- Syntax highlightinig
-    {src = "https://github.com/nvim-treesitter/nvim-treesitter", version = vim.version.range("*")},
-
-    -- Syntax highlighting (Treesitter recommends locking to a specific commit or using stable)
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = vim.version.range("*") },
 
     -- LSP Core 
