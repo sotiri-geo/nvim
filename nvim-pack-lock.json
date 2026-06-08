@@ -28,6 +28,11 @@
       "src": "http://github.com/mason-org/mason.nvim",
       "version": ">=0.0.0"
     },
+    "mini.diff": {
+      "rev": "fbb93ea1728e7c9d0944df8bd022a68402bd2e7e",
+      "src": "https://github.com/nvim-mini/mini.diff",
+      "version": "'stable'"
+    },
     "mini.extra": {
       "rev": "31f82562238a4fadd30997757ead6c7f1770e7ea",
       "src": "https://github.com/nvim-mini/mini.extra",
