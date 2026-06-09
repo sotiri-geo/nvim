@@ -1,18 +1,18 @@
-# Neovim Configuration (Colemak-DH / Miryoku)
+# Neovim Configuration
 
-This configuration is optimized for a **Colemak-DH** keyboard layout using the **Miryoku** navigation cluster for window management.
+This configuration is optimized for efficient window management and development workflow.
 
 ## ⌨️ Custom Keymaps
 
-### Window Navigation & Management (Colemak-DH)
-Mapped to match the Miryoku navigation layer on the right hand. Using the **<leader>w** prefix ensures compatibility with `tmux` and avoids conflicts with terminal control characters like `Enter` and `Tab`.
+### Window Navigation & Management
+Using the **<leader>w** prefix followed by arrow keys ensures compatibility with `tmux` and avoids conflicts with terminal control characters like `Enter` and `Tab`.
 
-| Key | Action | Miryoku Position / Description |
-|-----|--------|-----------------|
-| `<leader>wn` | Focus window **Left** | Index |
-| `<leader>we` | Focus window **Down** | Middle |
-| `<leader>wi` | Focus window **Up** | Ring |
-| `<leader>wo` | Focus window **Right** | Pinky |
+| Key | Action | Description |
+|-----|--------|-------------|
+| `<leader>w<Left>` | Focus window **Left** | Navigate to the window on the left |
+| `<leader>w<Down>` | Focus window **Down** | Navigate to the window below |
+| `<leader>w<Up>` | Focus window **Up** | Navigate to the window above |
+| `<leader>w<Right>` | Focus window **Right** | Navigate to the window on the right |
 
 ### Window Split
 | Key | Action | Description |
@@ -71,12 +71,12 @@ Mapped to match the Miryoku navigation layer on the right hand. Using the **<lea
 To work on two or more files simultaneously:
 
 1.  **Split the window**: Press `<leader>v` (vertical split) or `<leader>h` (horizontal split).
-2.  **Navigate to the new split**: Use your directional keys (e.g., `<leader>wo` to move right into a new vertical split).
+2.  **Navigate to the new split**: Use your directional keys (e.g., `<leader>w<Right>` to move right into a new vertical split).
 3.  **Open a file**:
     *   Press `<leader>ff` to search for a file and open it in the active split.
     *   Press `<leader>e` (relative to current file) or `<leader>E` (cwd) to open the file explorer and navigate to a file.
     *   Press `<leader>fb` to pick from already open buffers.
-4.  **Jump between them**: Use `<leader>wn` and `<leader>wo` to bounce between your side-by-side buffers.
+4.  **Jump between them**: Use `<leader>w<Left>` and `<leader>w<Right>` to bounce between your side-by-side buffers.
 5.  **Save and Close**:
     *   When you are done editing a side-by-side buffer, make sure you save your changes by typing **`:w`** and pressing Enter.
     *   To close the active split/window, type **`:q`** and press Enter. This will hide the split without closing your other windows.
@@ -92,7 +92,7 @@ To work on two or more files simultaneously:
 ### Terminal Integration
 1.  **Open a Terminal**: Press **`<leader>t`** to instantly open a new terminal in a vertical split next to your code.
 2.  **Exit Terminal Mode**: When typing in the terminal, you are in Terminal-Mode. To navigate back to your code, you must exit this mode by pressing **`<Esc><Esc>`** (double-tap Escape).
-3.  **Navigate**: Once back in Normal mode, use `<leader>wn` to move back to your code window. You can interact with the terminal buffer just like any other file!
+3.  **Navigate**: Once back in Normal mode, use `<leader>w<Left>` to move back to your code window. You can interact with the terminal buffer just like any other file!
 
 ### Autocomplete & Documentation
 This config uses `blink.cmp` for autocomplete and LSP for documentation.
