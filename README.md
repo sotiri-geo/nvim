@@ -103,6 +103,14 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 *   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`<leader>i`**.
 
 
+### Commenting Code
+Neovim 0.10+ has native commenting built-in. It automatically detects the language and applies the correct comment syntax (e.g., `//` for Go, `--` for Lua, `#` for Python).
+
+*   **Visual Mode (`Shift + V`)**: Select the lines you want to comment/uncomment and press **`gc`**.
+*   **Normal Mode (`gcc`)**: Toggle comment on the current line.
+*   **Normal Mode (`gc` + motion)**: Comment a text object or motion (e.g., **`gc4j`** to comment the current line and the 4 below it, or **`gcip`** to comment an inner paragraph).
+
+
 ### File System Management (`mini.files`)
 *   **Toggle**: Press `<leader>e` to open relative to the current file, or `<leader>E` to open from the project root (cwd).
 *   **Navigation**: Use standard movement keys. It includes a **preview window** on the right.
