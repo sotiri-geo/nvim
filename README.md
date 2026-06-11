@@ -103,6 +103,12 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 *   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`<leader>i`**.
 
 
+### Go Formatting
+Formatting and import organization are applied automatically on save for Go buffers via the native LSP client.
+
+*   **Format-on-Save**: Saving a Go file (`:w`) synchronously runs `gopls` to organize imports and format the buffer.
+
+
 ### Commenting Code
 Neovim 0.10+ has native commenting built-in. It automatically detects the language and applies the correct comment syntax (e.g., `//` for Go, `--` for Lua, `#` for Python).
 
