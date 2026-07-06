@@ -29,3 +29,10 @@ end, { desc = "Files: current file" })
 map("n", "<leader>E", function ()
     require("mini.files").open()
 end, { desc = "Files: cwd"})
+
+-- File navigation
+map("n", "<leader>sg", function()
+    local url = "https://sourcegraph.iap.tmachine.io/r/git.tmachine.io/diffusion/CORE/" .. vim.fn.expand('%:.')
+    vim.fn.setreg("+", url)
+    print("Sourcegraph link copied!")
+end, { desc = 'Copy Sourcegraph link to clipboard' })
