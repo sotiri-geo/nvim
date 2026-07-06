@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local clipboard_utils = require("config.clipboard_utils")
 
 -- Window navigation
 map("n", "<leader>w<Left>", "<C-w>h", { desc = "Window left" })
@@ -32,7 +33,7 @@ end, { desc = "Files: cwd"})
 
 -- File navigation
 map("n", "<leader>sg", function()
-    local url = "https://sourcegraph.iap.tmachine.io/r/git.tmachine.io/diffusion/CORE/" .. vim.fn.expand('%:.')
-    vim.fn.setreg("+", url)
+    local url = "https://sourcegraph.iap.tmachine.io/r/git.tmachine.io/diffusion/CORE/-/blob/" .. vim.fn.expand('%:.')
+    clipboard_utils.copy_osc52(url)
     print("Sourcegraph link copied!")
 end, { desc = 'Copy Sourcegraph link to clipboard' })

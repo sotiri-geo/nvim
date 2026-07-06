@@ -129,3 +129,26 @@ This config uses `mini.visits` to track files you actually visit, and `mini.extr
 *   **Project Recent Files**: Press `<leader>fv` to show visited files for the current working directory/project.
 *   **Ordering**: Results are sorted by recency, so the most recently visited files appear first.
 *   **Scope**: The picker is strictly scoped to the current `:pwd`. Visited files that lie physically outside of your current working directory (CWD) are filtered out automatically. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.
+
+### 📋 Remote Clipboard Sync (SSH + Tmux)
+This configuration implements automatic, high-performance clipboard synchronization from this remote headless Neovim session to your local system clipboard over SSH and Tmux using **OSC 52 escape sequences**.
+
+#### Behavior
+- **Explicit Yanks Only**: Pressing **`y`** (e.g., `yy`, `yw`, `y$`) in normal or visual mode automatically copies the yanked text to your local macOS/system clipboard.
+- **Deletions Ignored**: Deletions (`d`, `c`, `x`, etc.) do **not** sync to your local clipboard. This prevents your local clipboard manager (e.g., Maccy, Alfred, Clipy) from being flooded with transient edits.
+- **Sourcegraph Link Keymap**: Pressing **`<leader>sg`** copies the corrected Sourcegraph URL for the current file directly to your local clipboard using the OSC 52 pipeline.
+
+#### Mandatory Local Setup Requirements
+
+1. **iTerm2 Settings (Local Machine)**:
+   - Open iTerm2 Preferences (`Cmd + ,`).
+   - Go to **General** -> **Selection**.
+   - Under the **Clipboard** header, check **"Applications in terminal may access clipboard"**.
+
+2. **Tmux Configuration (Remote Host)**:
+   - Add this setting to your `~/.tmux.conf`:
+     ```tmux
+     set -s set-clipboard on
+     ```
+   - Reload your Tmux configuration: `tmux source-file ~/.tmux.conf`.
+
