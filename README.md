@@ -26,6 +26,7 @@ Using the **<leader>w** prefix followed by arrow keys ensures compatibility with
 | `<leader>e` | File Explorer | Toggle `mini.files` (relative to current file) |
 | `<leader>E` | File Explorer | Toggle `mini.files` (cwd) |
 | `<leader>sg` | Copy Link | Copy Sourcegraph link to clipboard |
+| `<leader>yp` | Copy Path | Copy relative filepath to clipboard |
 
 ### Picker (`mini.pick`)
 | Key | Action |

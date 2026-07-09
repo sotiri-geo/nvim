@@ -37,3 +37,9 @@ map("n", "<leader>sg", function()
     clipboard_utils.copy_osc52(url)
     print("Sourcegraph link copied!")
 end, { desc = 'Copy Sourcegraph link to clipboard' })
+
+-- Copy path
+map("n", "<leader>yp", function ()
+    clipboard_utils.copy_osc52(vim.fn.expand('%:.'))
+    print("Filepath copied to clipboard!")
+end, { desc = "Copy filepath to clipboard" })
