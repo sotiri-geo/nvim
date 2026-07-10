@@ -42,7 +42,7 @@ Using the **<leader>w** prefix followed by arrow keys ensures compatibility with
 |-----|--------|-------------|
 | `<leader>.` | Next Buffer | Cycles to the next open buffer |
 | `<leader>,` | Previous Buffer | Cycles to the previous open buffer |
-| `<leader>c` | Delete Buffer | Closes the current buffer |
+| `<leader>x` | Delete Buffer | Closes the current buffer |
 
 ### Terminal Management
 | Key | Action | Description |
@@ -89,7 +89,7 @@ To work on two or more files simultaneously:
 *   **Resize Splits**: Use Neovim's default resize commands if needed:
     *   `:vertical resize +5` (make vertical split wider)
     *   `:resize +5` (make horizontal split taller)
-*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, press **`<leader>c`**.
+*   **Close Buffer (Not just Window)**: If you want to close a file completely so it doesn't show up in `<leader>fb` anymore, press **`<leader>x`**.
 
 ### Terminal Integration
 1.  **Open a Terminal**: Press **`<leader>t`** to instantly open a new terminal in a vertical split next to your code.

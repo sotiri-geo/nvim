@@ -12,7 +12,7 @@ map("n", "<leader>h", "<C-w>s", { desc = "Split window horizontally" })
 -- Buffer navigation
 map("n", "<leader>.", ":bnext<CR>", { desc = "Next buffer", silent = true })
 map("n", "<leader>,", ":bprevious<CR>", { desc = "Next previous", silent = true })
-map("n", "<leader>c", ":bdelete<CR>", { desc = "Delete buffer", silent = true })
+map("n", "<leader>x", ":bdelete<CR>", { desc = "Delete buffer", silent = true })
 -- Terminal navigation
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("n", "<leader>t", "<C-w>v<cmd>term<cr>", { desc = "Open terminal vertically" })
