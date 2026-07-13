@@ -18,3 +18,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
     desc = "Automatically sync explicit yanks to local clipboard via OSC 52 over SSH/Tmux"
 })
+
+local comment_continuation_group = vim.api.nvim_create_augroup("CommentContinuation", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = comment_continuation_group,
+    callback = function()
+        vim.opt_local.formatoptions:append("r")
+    end,
+    desc = "Continue comment leaders after pressing Enter in insert mode"
+})
