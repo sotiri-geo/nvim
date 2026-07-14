@@ -37,6 +37,24 @@ Using the **<leader>w** prefix followed by arrow keys ensures compatibility with
 | `<leader>fh` | Help Tags |
 | `<leader>fv` | Recent Visited Files (current cwd/project) |
 
+#### Previewing grep results in `mini.pick`
+`<leader>fg` opens `:Pick grep_live`. While the picker is active, press `<Tab>` to toggle a preview of the currently focused match.
+
+`mini.pick` uses one floating window for its main list, preview, and info views. This means the preview replaces the result list instead of appearing as a separate right-hand pane.
+
+Useful keys while searching:
+
+| Key | Action |
+|-----|--------|
+| `<Tab>` | Toggle preview for the focused result |
+| `<C-n>` / `<Down>` | Move to the next result |
+| `<C-p>` / `<Up>` | Move to the previous result |
+| `<C-f>` | Scroll down in preview |
+| `<C-b>` | Scroll up in preview |
+| `<S-Tab>` | Show picker info and available mappings |
+
+Reference: `:help MiniPick-overview`, `:help MiniPick-actions-toggle`, and `:help MiniPick.builtin.grep_live()`.
+
 #### Pasting in `mini.pick`
 `mini.pick` does not accept terminal paste (`Cmd+V`) while a picker is active. If you press `Cmd+V`, it will show a hint asking you to use the picker paste mapping instead.
 
