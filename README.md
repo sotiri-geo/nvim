@@ -37,6 +37,19 @@ Using the **<leader>w** prefix followed by arrow keys ensures compatibility with
 | `<leader>fh` | Help Tags |
 | `<leader>fv` | Recent Visited Files (current cwd/project) |
 
+#### Pasting in `mini.pick`
+`mini.pick` does not accept terminal paste (`Cmd+V`) while a picker is active. If you press `Cmd+V`, it will show a hint asking you to use the picker paste mapping instead.
+
+Use register paste inside the picker:
+
+| Key | Pastes From | Use Case |
+|-----|-------------|----------|
+| `<C-r>+` | System clipboard | Text copied with macOS `Cmd+C`, or yanks synced to the clipboard |
+| `<C-r>0` | Last yank register | The exact text most recently yanked with `y` |
+| `<C-r>"` | Unnamed register | Vim's default register, which can be overwritten by deletes/changes |
+
+Example: open `<leader>ff`, press `<C-r>+`, and the macOS clipboard text is inserted into the picker prompt.
+
 ### Buffer Management
 | Key | Action | Description |
 |-----|--------|-------------|
@@ -152,4 +165,3 @@ This configuration implements automatic, high-performance clipboard synchronizat
      set -s set-clipboard on
      ```
    - Reload your Tmux configuration: `tmux source-file ~/.tmux.conf`.
-
