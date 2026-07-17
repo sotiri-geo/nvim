@@ -51,6 +51,7 @@ Useful keys while searching:
 | `<C-p>` / `<Up>` | Move to the previous result |
 | `<C-f>` | Scroll down in preview |
 | `<C-b>` | Scroll up in preview |
+| `<C-y>` | Paste the last Neovim yank into the prompt |
 | `<S-Tab>` | Show picker info and available mappings |
 
 Reference: `:help MiniPick-overview`, `:help MiniPick-actions-toggle`, and `:help MiniPick.builtin.grep_live()`.
@@ -62,11 +63,12 @@ Use register paste inside the picker:
 
 | Key | Pastes From | Use Case |
 |-----|-------------|----------|
+| `<C-y>` | Last yank register | Fast paste for text copied inside Neovim with `y` |
 | `<C-r>+` | System clipboard | Text copied with macOS `Cmd+C`, or yanks synced to the clipboard |
 | `<C-r>0` | Last yank register | The exact text most recently yanked with `y` |
 | `<C-r>"` | Unnamed register | Vim's default register, which can be overwritten by deletes/changes |
 
-Example: open `<leader>ff`, press `<C-r>+`, and the macOS clipboard text is inserted into the picker prompt.
+Example: yank text with `y`, open `<leader>fg`, and press `<C-y>` to insert that yanked text into the live grep prompt.
 
 ### Buffer Management
 | Key | Action | Description |
