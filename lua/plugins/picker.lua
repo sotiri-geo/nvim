@@ -19,8 +19,9 @@ end
 
 pick.setup({
     mappings = {
+        choose_in_vsplit = "",
         paste_yank = {
-            char = "<C-y>",
+            char = "<C-v>",
             func = paste_register("0"),
         },
     },
