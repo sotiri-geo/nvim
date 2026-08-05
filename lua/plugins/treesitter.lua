@@ -15,6 +15,7 @@ treesitter.install({
     "json",
     "yaml",
     "markdown",
+    "starlark",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -27,6 +28,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "json",
         "yaml",
         "markdown",
+        "bzl",
     },
     callback = function()
         vim.treesitter.start()
