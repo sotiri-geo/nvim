@@ -64,22 +64,75 @@ vim.lsp.config("ruff", {
     end,
 })
 
+local function set_lsp_keymap(client, method, lhs, rhs, buffer, desc)
+    if client:supports_method(method, buffer) then
+        vim.keymap.set("n", lhs, rhs, { buffer = buffer, desc = desc })
+    end
+end
+
+local function show_please_help(client, buffer)
+    local symbol = vim.fn.expand("<cword>")
+    if symbol == "" then
+        vim.notify("No Please rule under the cursor", vim.log.levels.WARN)
+        return
+    end
+
+    vim.system({ "plz", "help", symbol }, {
+        cwd = client.root_dir,
+        text = true,
+    }, function(result)
+        vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(buffer) or vim.api.nvim_get_current_buf() ~= buffer then
+                return
+            end
+
+            local output = vim.trim(result.stdout or "")
+            if result.code ~= 0 or output == "" then
+                local message = vim.trim(result.stderr or "")
+                if message == "" then
+                    message = ("No Please help found for %q"):format(symbol)
+                end
+                vim.notify(message, vim.log.levels.WARN)
+                return
+            end
+
+            vim.lsp.util.open_floating_preview(vim.split(output, "\n", { plain = true }), "text", {
+                border = "rounded",
+                focusable = true,
+                max_height = math.max(vim.o.lines - 4, 1),
+                max_width = math.max(math.floor(vim.o.columns * 0.8), 1),
+                wrap = true,
+            })
+        end)
+    end)
+end
+
 -- LSP Attach Autocommand for buffer-local keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if not client then
+            return
+        end
 
         -- Buffer local mappings
         -- See `:help vim.lsp.*` for docs on any of the below functions
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "LSP: Go to declaration"})
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "LSP: Go to definition"})
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf, desc = "LSP: References" })
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf, desc = "LSP: Implementation" })
+        set_lsp_keymap(client, "textDocument/declaration", "gD", vim.lsp.buf.declaration, ev.buf, "LSP: Go to declaration")
+        set_lsp_keymap(client, "textDocument/definition", "gd", vim.lsp.buf.definition, ev.buf, "LSP: Go to definition")
+        set_lsp_keymap(client, "textDocument/references", "gr", vim.lsp.buf.references, ev.buf, "LSP: References")
+        set_lsp_keymap(client, "textDocument/implementation", "gi", vim.lsp.buf.implementation, ev.buf, "LSP: Implementation")
 
-        vim.keymap.set("n", "<leader>i", vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP: Hover info" })
-        vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = ev.buf, desc = "LSP: Rename symbol" })
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "LSP: Code action" })
+        if client.name == "please" then
+            vim.keymap.set("n", "<leader>i", function()
+                show_please_help(client, ev.buf)
+            end, { buffer = ev.buf, desc = "Please: Rule help" })
+        else
+            set_lsp_keymap(client, "textDocument/hover", "<leader>i", vim.lsp.buf.hover, ev.buf, "LSP: Hover info")
+        end
+
+        set_lsp_keymap(client, "textDocument/rename", "<leader>cr", vim.lsp.buf.rename, ev.buf, "LSP: Rename symbol")
+        set_lsp_keymap(client, "textDocument/codeAction", "<leader>ca", vim.lsp.buf.code_action, ev.buf, "LSP: Code action")
 
         vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { buffer = ev.buf, desc = "Diagnostic: Next" })
         vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = ev.buf, desc = "Diagnostic: Previous" })
