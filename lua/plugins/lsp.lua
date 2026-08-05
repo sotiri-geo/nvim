@@ -31,6 +31,10 @@ vim.lsp.config("lua_ls", {
 vim.lsp.config("gopls", {
     settings = {
         gopls = {
+            directoryFilters = {
+                "-**/node_modules",
+                "-plz-out",
+            },
             gofumpt = true,
             staticcheck = true,
             analyses = {
