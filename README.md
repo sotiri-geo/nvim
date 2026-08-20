@@ -9,10 +9,8 @@ Using the **<leader>w** prefix followed by arrow keys ensures compatibility with
 
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>w<Left>` | Focus window **Left** | Navigate to the window on the left |
-| `<leader>w<Down>` | Focus window **Down** | Navigate to the window below |
-| `<leader>w<Up>` | Focus window **Up** | Navigate to the window above |
-| `<leader>w<Right>` | Focus window **Right** | Navigate to the window on the right |
+| `<leader>r` | Focus window **Left** | Navigate to the window on the left |
+| `<leader>i` | Focus window **Right** | Navigate to the window on the right |
 
 ### Window Split
 | Key | Action | Description |
