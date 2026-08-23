@@ -5,13 +5,14 @@ This configuration is optimized for efficient window management and development 
 ## ⌨️ Custom Keymaps
 
 ### Window Navigation & Management
-A single **<leader>w** toggles back to the last-accessed window (Neovim's built-in `CTRL-W p`). With two splits this bounces you between them; with three or more it returns you to wherever you just came from.
+Use the **<leader>w** prefix followed by an arrow key to jump directly to the window in that direction.
 
 Using a leader mapping rather than a `Ctrl` pair is deliberate: inside `tmux` with `extended-keys` off, `<C-i>` and `<C-m>` are byte-identical to `Tab` and `Enter`, so binding them would break `Tab` completion and the picker preview toggle.
 
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>p` | Focus **Other** window | Jump to the previous (last accessed) window |
+| `<leader>w<Left>` | Focus window **Left** | Navigate to the window on the left |
+| `<leader>w<Right>` | Focus window **Right** | Navigate to the window on the right |
 
 ### Window Split
 | Key | Action | Description |
@@ -79,7 +80,7 @@ Example: Yank text with `y`, open `<leader>fg`, and press `<C-v>` to insert it s
 |-----|--------|-------------|
 | `<Esc><Esc>` | Exit Terminal Mode | Switch back to normal mode from terminal |
 | `<leader>t` | Terminal Split | Open terminal in a vertical split |
-| `<leader>tx` | Kill Terminal | Force delete the current terminal buffer |
+| `<leader>X` | Kill Terminal | Force delete the current terminal buffer |
 
 ### LSP Actions
 | Key | Action | Description |
@@ -103,12 +104,12 @@ Example: Yank text with `y`, open `<leader>fg`, and press `<C-v>` to insert it s
 To work on two or more files simultaneously:
 
 1.  **Split the window**: Press `<leader>v` (vertical split) or `<leader>h` (horizontal split).
-2.  **Navigate to the new split**: Press `<leader>w` to hop into the split you just created.
+2.  **Navigate to the new split**: Use `<leader>w<Left>` / `<leader>w<Right>` to hop into the split you just created.
 3.  **Open a file**:
     *   Press `<leader>ff` to search for a file and open it in the active split.
     *   Press `<leader>e` (relative to current file) or `<leader>E` (cwd) to open the file explorer and navigate to a file.
     *   Press `<leader>fb` to pick from already open buffers.
-4.  **Jump between them**: Tap `<leader>w` to bounce between your side-by-side buffers.
+4.  **Jump between them**: Use `<leader>w<Left>` and `<leader>w<Right>` to bounce between your side-by-side buffers.
 5.  **Save and Close**:
     *   When you are done editing a side-by-side buffer, make sure you save your changes by typing **`:w`** and pressing Enter.
     *   To close the active split/window, type **`:q`** and press Enter. This will hide the split without closing your other windows.
@@ -124,7 +125,7 @@ To work on two or more files simultaneously:
 ### Terminal Integration
 1.  **Open a Terminal**: Press **`<leader>t`** to instantly open a new terminal in a vertical split next to your code.
 2.  **Exit Terminal Mode**: When typing in the terminal, you are in Terminal-Mode. To navigate back to your code, you must exit this mode by pressing **`<Esc><Esc>`** (double-tap Escape).
-3.  **Navigate**: Once back in Normal mode, press `<leader>w` to move back to your code window. You can interact with the terminal buffer just like any other file!
+3.  **Navigate**: Once back in Normal mode, press `<leader>w<Left>` to move back to your code window. You can interact with the terminal buffer just like any other file!
 
 ### Autocomplete & Documentation
 This config uses `blink.cmp` for autocomplete and LSP for documentation.

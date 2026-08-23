@@ -2,7 +2,8 @@ local map = vim.keymap.set
 local clipboard_utils = require("config.clipboard_utils")
 
 -- Window navigation
-map("n", "<leader>p", "<C-w>p", { desc = "Other window" })
+map("n", "<leader>w<Left>", "<C-w>h", { desc = "Window left" })
+map("n", "<leader>w<Right>", "<C-w>l", { desc = "Window right" })
 
 map("n", "<leader>v", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>h", "<C-w>s", { desc = "Split window horizontally" })
