@@ -11,7 +11,7 @@ Using a leader mapping rather than a `Ctrl` pair is deliberate: inside `tmux` wi
 
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>w` | Focus **Other** window | Jump to the previous (last accessed) window |
+| `<leader>p` | Focus **Other** window | Jump to the previous (last accessed) window |
 
 ### Window Split
 | Key | Action | Description |
