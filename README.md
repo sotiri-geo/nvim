@@ -150,6 +150,91 @@ Neovim 0.10+ has native commenting built-in. It automatically detects the langua
 *   **Normal Mode (`gc` + motion)**: Comment a text object or motion (e.g., **`gc4j`** to comment the current line and the 4 below it, or **`gcip`** to comment an inner paragraph).
 
 
+### Surrounding Text (`mini.surround`)
+Add, delete, or replace the delimiters (quotes, brackets, tags) wrapped around a text object.
+
+| Key | Action |
+|-----|--------|
+| `sa` + object + delimiter | Add surrounding |
+| `sd` + delimiter | Delete surrounding |
+| `sr` + delimiter + new delimiter | Replace surrounding |
+| `sf` / `sF` | Find surrounding (search right/left) |
+
+**Add** (`sa` + a text object + the delimiter to add):
+
+| Command | Before | After |
+|---------|--------|-------|
+| `saiw"` | `hello` | `"hello"` |
+| `saiw(` | `hello` | `( hello )` (padded automatically) |
+| `viw` then `sa'` | `hello` (visual selection) | `'hello'` |
+| `sap<` (prompts for tag name, e.g. `div<CR>`) | `hello` | `<div>hello</div>` |
+
+**Delete** (`sd` + the delimiter to remove):
+
+| Command | Before | After |
+|---------|--------|-------|
+| `sd"` | `"hello"` | `hello` |
+| `sd)` | `(hello)` | `hello` |
+| `sdb` | `[hello]` (any bracket) | `hello` |
+| `sdt` | `<div>hello</div>` | `hello` |
+
+**Replace** (`sr` + delimiter to find + delimiter to replace it with):
+
+| Command | Before | After |
+|---------|--------|-------|
+| `sr"'` | `"hello"` | `'hello'` |
+| `sr)]` | `(hello)` | `[hello]` |
+| `srb}` | `[hello]` (any bracket → `}`) | `{hello}` |
+| `srt` (prompts twice, e.g. `div<CR>span<CR>`) | `<div>hello</div>` | `<span>hello</span>` |
+
+**Find** (`sf` / `sF` — jumps the cursor to the matching delimiter without changing anything, useful before an operator like `d` or `c`):
+
+| Command | Cursor starts | Cursor ends up |
+|---------|----------------|----------------|
+| `sf)` | inside `(hello)`, before `)` | on the closing `)` |
+| `sF(` | inside `(hello)`, after `(` | on the opening `(` |
+
+Reference: `:help MiniSurround`.
+
+### Smarter Text Objects (`mini.ai`)
+Extends the native `a`/`i` (around/inside) text objects to be treesitter-aware, and adds new ones.
+
+| id | Targets |
+|----|---------|
+| `( ) [ ] { } < >` | Balanced brackets |
+| `b` | Alias for any closing bracket |
+| `' " `` ` `` | Quotes |
+| `q` | Alias for any quote |
+| `t` | HTML/XML tag |
+| `f` | Function call |
+| `a` | Function argument |
+
+Works like any native text object — `<operator><a|i><id>` — with `d` (delete), `c` (change), `y` (yank), or `v` (select):
+
+| Command | Cursor in / near | Before | After |
+|---------|-------------------|--------|-------|
+| `di"` | `say "hello world"` | between the quotes | `say ""` |
+| `da"` | `say "hello world"` | between the quotes | `say` |
+| `di(` | `foo(bar(1, 2))`, cursor on `1` | innermost parens resolved automatically | `foo(bar())` |
+| `daf` | `foo(bar(1, 2))`, cursor on `bar` | whole call incl. its own parens | `foo()` |
+| `dif` | `foo(bar(1, 2))`, cursor on `bar` | just the call's arguments | `foo(bar())` |
+| `cia` | `foo(bar, baz)`, cursor on `baz` | the argument under the cursor | `foo(bar, )` then insert mode |
+| `dat` | `<div>hello</div>` | whole tag incl. `<div>`/`</div>` | (removed entirely) |
+| `dit` | `<div>hello</div>` | just the tag's inner content | `<div></div>` |
+| `yiq` | `'hello'` (any quote style) | text inside nearest quote | yanks `hello` |
+
+Append `n`/`l` after `a`/`i` to target the **n**ext/**l**ast occurrence without moving the cursor there first:
+
+| Command | Effect |
+|---------|--------|
+| `din"` | Delete inside the next `"..."` ahead of the cursor |
+| `dal(` | Delete around the last `(...)` before the cursor |
+| `2din(` | Delete inside the 2nd next `(...)` ahead of the cursor |
+
+Reference: `:help MiniAi`.
+
+Reference: `:help MiniAi`.
+
 ### File System Management (`mini.files`)
 *   **Toggle**: Press `<leader>e` to open relative to the current file, or `<leader>E` to open from the project root (cwd).
 *   **Navigation**: Use standard movement keys. It includes a **preview window** on the right.
@@ -161,6 +246,12 @@ This config uses `mini.visits` to track files you actually visit, and `mini.extr
 *   **Project Recent Files**: Press `<leader>fv` to show visited files for the current working directory/project.
 *   **Ordering**: Results are sorted by recency, so the most recently visited files appear first.
 *   **Scope**: The picker is strictly scoped to the current `:pwd`. Visited files that lie physically outside of your current working directory (CWD) are filtered out automatically. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.
+
+### Statusline (`mini.statusline`)
+A minimal statusline showing the current mode, git branch, diff summary (via `mini.diff`), LSP diagnostics, filename, filetype, and cursor location. No keymaps — it renders automatically once the buffer has content.
+
+### Animations (`mini.animate`)
+Cursor movement, scrolling, and window resize/open/close are animated automatically. No keymaps or setup required day-to-day; if the animations aren't to your taste, adjust or disable them in `lua/plugins/animate.lua`.
 
 ### 📋 Remote Clipboard Sync (SSH + Tmux)
 This configuration implements automatic, high-performance clipboard synchronization from this remote headless Neovim session to your local system clipboard over SSH and Tmux using **OSC 52 escape sequences**.

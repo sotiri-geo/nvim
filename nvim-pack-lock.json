@@ -28,6 +28,16 @@
       "src": "http://github.com/mason-org/mason.nvim",
       "version": ">=0.0.0"
     },
+    "mini.ai": {
+      "rev": "d73c36349aa7b0bab5f77ad71701a1d42211a1df",
+      "src": "https://github.com/nvim-mini/mini.ai",
+      "version": "'stable'"
+    },
+    "mini.animate": {
+      "rev": "1c243baec3a308ea3552fbbd2f5d24ed804bf17d",
+      "src": "https://github.com/nvim-mini/mini.animate",
+      "version": "'stable'"
+    },
     "mini.diff": {
       "rev": "fbb93ea1728e7c9d0944df8bd022a68402bd2e7e",
       "src": "https://github.com/nvim-mini/mini.diff",
@@ -60,7 +70,13 @@
     },
     "mini.statusline": {
       "rev": "e9e5c147385e5e0310ab79162dd08d0465e96d83",
-      "src": "https://github.com/nvim-mini/mini.statusline"
+      "src": "https://github.com/nvim-mini/mini.statusline",
+      "version": "'stable'"
+    },
+    "mini.surround": {
+      "rev": "580e4cb98c5900d9fe743865fb5a5b2178b4ab18",
+      "src": "https://github.com/nvim-mini/mini.surround",
+      "version": "'stable'"
     },
     "mini.visits": {
       "rev": "f6b86565acc690aa111627433906be3d38e2ba81",
