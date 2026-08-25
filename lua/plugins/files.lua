@@ -26,6 +26,10 @@ vim.api.nvim_create_autocmd("User", {
     callback = function(args)
         local buf_id = args.data.buf_id
 
+        -- mini.animate's cursor/scroll animation looks wrong in the file list, so
+        -- opt this buffer out via mini.animate's documented buffer-local disable flag
+        vim.b[buf_id].minianimate_disable = true
+
         -- Helper to scroll active directory list by moving cursor
         local scroll_explorer = function(direction)
             local win = vim.api.nvim_get_current_win()
