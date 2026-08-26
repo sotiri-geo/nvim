@@ -13,5 +13,5 @@ vim.opt.termguicolors = true
 vim.opt.hidden = true
 vim.opt.hlsearch = false
 vim.opt.autoread = true
-vim.opt.timeoutlen = 700
-vim.opt.timeout = true
+-- vim.opt.timeoutlen = 700
+vim.opt.timeout = false
