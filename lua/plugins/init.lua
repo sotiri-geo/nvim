@@ -8,17 +8,17 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason-lspconfig.nvim", version = vim.version.range("*") },
 
     -- Mini Ecosystem 
-    { src = "https://github.com/nvim-mini/mini.pick", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.files", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.pairs", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.icons", version = "stable" },
-    { src = "https://github.com/nvim-mini/mini.visits", version = "stable" },
-    { src = "https://github.com/nvim-mini/mini.extra", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.diff", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.animate", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.surround", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.ai", version = "stable" },
     { src = "https://github.com/nvim-mini/mini.statusline", version = "stable" },
+
+    -- Picker
+    { src = "https://github.com/ibhagwan/fzf-lua", version = "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e" },
 
     -- Completion 
     { src = "https://github.com/saghen/blink.lib" },
@@ -37,7 +37,6 @@ require("plugins.files")
 require("plugins.completion")
 require("plugins.pairs")
 require("plugins.icons")
-require("plugins.visits")
 require("plugins.diff")
 require("plugins.animate")
 require("plugins.surround")

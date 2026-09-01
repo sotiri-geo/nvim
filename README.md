@@ -28,7 +28,7 @@ Using a leader mapping rather than a `Ctrl` pair is deliberate: inside `tmux` wi
 | `<leader>sg` | Copy Link | Copy Sourcegraph link to clipboard |
 | `<leader>yp` | Copy Path | Copy relative filepath to clipboard |
 
-### Picker (`mini.pick`)
+### Picker (`fzf-lua`)
 | Key | Action |
 |-----|--------|
 | `<leader>ff` | Find Files |
@@ -36,37 +36,62 @@ Using a leader mapping rather than a `Ctrl` pair is deliberate: inside `tmux` wi
 | `<leader>fb` | Find Buffers |
 | `<leader>fh` | Help Tags |
 | `<leader>fv` | Recent Visited Files (current cwd/project) |
+| `<leader>fw` | Live Grep word under cursor (or selection, in visual mode) |
+| `<leader>fy` | Live Grep the last yank |
 
-#### Previewing grep results in `mini.pick`
-`<leader>fg` opens `:Pick grep_live`. While the picker is active, press `<Tab>` to toggle a preview of the currently focused match.
+`fzf-lua` is pinned to a specific commit rather than a version range, because upstream has no
+maintained stable branch and no releases - its newest tag is 872 commits behind `main`. Bumping it
+is a deliberate edit to `lua/plugins/init.lua`, not something `vim.pack.update()` does.
 
-`mini.pick` uses one floating window for its main list, preview, and info views. This means the preview replaces the result list instead of appearing as a separate right-hand pane.
+#### Filtering grep by file extension
+Append ` -- ` to the query, then one or more glob patterns:
 
-Useful keys while searching:
+| Query | Effect |
+|-------|--------|
+| `handleRequest` | Search everything |
+| `handleRequest -- *.go` | Only Go files |
+| `handleRequest -- *.py` | Only Python files |
+| `handleRequest -- *.go !*_test.go` | Go files, excluding tests |
+| `handleRequest -- lua/**` | Only under `lua/` |
+
+Globs are translated to ripgrep `--iglob` arguments (case-insensitive; `!` negates). This works in
+every grep picker, not just `<leader>fg` - `rg_glob` is enabled by default.
+
+#### Useful keys while searching
 
 | Key | Action |
 |-----|--------|
-| `<Tab>` | Toggle preview for the focused result |
-| `<C-n>` / `<Down>` | Move to the next result |
-| `<C-p>` / `<Up>` | Move to the previous result |
-| `<C-f>` | Scroll down in preview |
-| `<C-b>` | Scroll up in preview |
-| `<C-v>` | Paste the last Neovim yank into the prompt |
-| `<S-Tab>` | Show picker info and available mappings |
+| `<F4>` | Toggle the preview pane |
+| `<F1>` | Toggle the help / show all bindings |
+| `<F2>` | Toggle fullscreen |
+| `<C-n>` / `<C-p>` | Next / previous result |
+| `<C-d>` / `<C-u>` | Half page down / up in the result list (matches `mini.files`) |
+| `<C-f>` / `<C-b>` | Half page down / up in the result list (same thing) |
+| `<C-r>` | Clear the query line (fzf's `ctrl-u` default, moved aside) |
+| `<S-Down>` / `<S-Up>` | Page down / up **in the preview** |
+| `<Tab>` | Toggle multi-select on the focused result |
+| `<C-g>` | Toggle between live grep and fuzzy-filtering the current results |
+| `<CR>` | Open |
+| `<C-s>` / `<C-v>` / `<C-t>` | Open in split / vsplit / tab |
+| `<M-q>` | Send results to the quickfix list |
 
-Reference: `:help MiniPick-overview`, `:help MiniPick-actions-toggle`, and `:help MiniPick.builtin.grep_live()`.
+`<C-g>` is worth knowing: live grep re-runs ripgrep on every keystroke, so it matches literally.
+Press `<C-g>` to freeze the current result set and fuzzy-filter within it instead.
 
-#### Pasting in `mini.pick`
-To paste text into the `mini.pick` query prompt safely (stripping newlines/tabs), use the custom `<C-v>` mapping.
+Reference: `:help fzf-lua`, and `:FzfLua` with no arguments to browse every available picker.
 
-| Key | Pastes From | Use Case |
-|-----|-------------|----------|
-| `<C-v>` | Last yank register | Fast, safe paste of the text last yanked with `y` inside Neovim |
-| `<C-r>+` | System clipboard | Standard Neovim command-line register paste |
-| `<C-r>0` | Last yank register | Paste the exact text most recently yanked inside Neovim with `y` |
-| `<C-r>"` | Unnamed register | Vim's default register |
+#### Pasting into the prompt
+`fzf` runs in a terminal buffer, so a register cannot be pasted straight into the query prompt
+(`<C-v>` opens in a vertical split here). Instead the search term is seeded before the picker
+opens:
 
-Example: Yank text with `y`, open `<leader>fg`, and press `<C-v>` to insert it safely.
+| Key | Searches for |
+|-----|--------------|
+| `<leader>fy` | The last yank (register `0`) |
+| `<leader>fw` | The word under the cursor (normal mode) |
+| `<leader>fw` | The visual selection (visual mode) |
+
+Example: yank text with `y`, then press `<leader>fy` to grep for it. Add ` -- *.go` to narrow.
 
 ### Buffer Management
 | Key | Action | Description |
@@ -240,12 +265,15 @@ Reference: `:help MiniAi`.
 *   **Navigation**: Use standard movement keys. It includes a **preview window** on the right.
 *   **Editing**: You can rename, create, or move files by editing the text in the explorer buffer and saving it (**`:w`**).
 
-### Recent Files (`mini.visits` + `mini.pick`)
-This config uses `mini.visits` to track files you actually visit, and `mini.extra` to expose those visits through the `mini.pick` UI.
+### Recent Files (`fzf-lua`)
+Recent files come from Neovim's own oldfiles list (`v:oldfiles`, persisted via shada), surfaced
+through `fzf.oldfiles`.
 
-*   **Project Recent Files**: Press `<leader>fv` to show visited files for the current working directory/project.
-*   **Ordering**: Results are sorted by recency, so the most recently visited files appear first.
-*   **Scope**: The picker is strictly scoped to the current `:pwd`. Visited files that lie physically outside of your current working directory (CWD) are filtered out automatically. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.
+*   **Project Recent Files**: Press `<leader>fv` to show recent files for the current working directory/project.
+*   **Ordering**: Most recently used first.
+*   **Scope**: `cwd_only = true` filters out anything that lies physically outside the current working directory. To change projects, start Neovim in the project directory or use `:cd /path/to/project`.
+*   **Current session**: `include_current_session = true` is set deliberately. `v:oldfiles` is only populated from the shada file at startup and is *not* updated as you work, so without this flag files opened during the current session would never appear.
+*   **Note on semantics**: this lists "recently opened files that live under the cwd", which is not quite the same as "files opened while working in this project" - a file belonging to this project but opened from elsewhere still counts.
 
 ### Statusline (`mini.statusline`)
 A minimal statusline showing the current mode, git branch, diff summary (via `mini.diff`), LSP diagnostics, filename, filetype, and cursor location. No keymaps — it renders automatically once the buffer has content.
