@@ -26,7 +26,7 @@ fzf.setup({
 local map = vim.keymap.set
 
 map("n", "<leader>ff", fzf.files, { desc = "Find files" })
-map("n", "<leader>fg", fzf.live_grep_glob, { desc = "Live grep" })
+map("n", "<leader>fg", fzf.live_grep, { desc = "Live grep" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Find buffers" })
 map("n", "<leader>fh", fzf.helptags, { desc = "Help tags" })
 
@@ -42,7 +42,7 @@ end, { desc = "Recent files (current project)" })
 -- fzf runs in a terminal buffer so there is no in-prompt register paste; instead
 -- seed the ripgrep term directly via `opts.search`.
 map("n", "<leader>fy", function()
-    fzf.live_grep_glob({ search = vim.fn.getreg("0") })
+    fzf.live_grep({ search = vim.fn.getreg("0") })
 end, { desc = "Live grep last yank" })
 
 map("n", "<leader>fw", fzf.grep_cword, { desc = "Live grep word under cursor" })
