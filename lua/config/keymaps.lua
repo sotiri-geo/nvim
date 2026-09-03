@@ -30,11 +30,31 @@ map("n", "<leader>E", function ()
 end, { desc = "Files: cwd"})
 
 -- File navigation
-map("n", "<leader>sg", function()
+local function sourcegraph_link(start_line, end_line)
     local url = "https://sourcegraph.iap.tmachine.io/r/git.tmachine.io/diffusion/CORE/-/blob/" .. vim.fn.expand('%:.')
+    if start_line then
+        if end_line and end_line ~= start_line then
+            url = url .. "?L" .. start_line .. "-" .. end_line .. "&signin=http-header"
+        else
+            url = url .. "?L" .. start_line .. "&signin=http-header"
+        end
+    end
     clipboard_utils.copy_osc52(url)
     print("Sourcegraph link copied!")
+end
+
+map("n", "<leader>sg", function()
+    sourcegraph_link(vim.fn.line('.'))
 end, { desc = 'Copy Sourcegraph link to clipboard' })
+
+map("v", "<leader>sg", function()
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+    sourcegraph_link(start_line, end_line)
+end, { desc = 'Copy Sourcegraph link (selection) to clipboard' })
 
 -- Copy path
 map("n", "<leader>yp", function ()
