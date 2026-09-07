@@ -25,25 +25,42 @@ fzf.setup({
 
 local map = vim.keymap.set
 
-map("n", "<leader>ff", fzf.files, { desc = "Find files" })
-map("n", "<leader>fg", fzf.live_grep, { desc = "Live grep" })
-map("n", "<leader>fb", fzf.buffers, { desc = "Find buffers" })
-map("n", "<leader>fh", fzf.helptags, { desc = "Help tags" })
+-- fzf-lua caches the source context module-globally (fzf-lua/ctx.lua) and only refreshes it
+-- when no fzf win object exists — but `win.__SELF()` lingers after a picker closes, so the
+-- cached `ctx.bufnr` can outlive the buffer it points at. mini.files explorer buffers are
+-- `bufhidden=wipe`, so opening a picker from the explorer leaves a genuinely dead handle
+-- behind; `oldfiles` then dies on `nvim_buf_get_name` with "Invalid buffer id". Dropping a
+-- dead context forces `ctx.refresh()` to rebuild it against the real current buffer.
+local function with_fresh_ctx(fn)
+    return function(...)
+        local ctx = require("fzf-lua.ctx")
+        local cached = ctx.get()
+        if cached and not vim.api.nvim_buf_is_valid(cached.bufnr) then
+            ctx.reset()
+        end
+        return fn(...)
+    end
+end
+
+map("n", "<leader>ff", with_fresh_ctx(fzf.files), { desc = "Find files" })
+map("n", "<leader>fg", with_fresh_ctx(fzf.live_grep), { desc = "Live grep" })
+map("n", "<leader>fb", with_fresh_ctx(fzf.buffers), { desc = "Find buffers" })
+map("n", "<leader>fh", with_fresh_ctx(fzf.helptags), { desc = "Help tags" })
 
 -- Recent files, restricted to the current project.
 --   cwd_only                -> drop anything outside the current working directory
 --   include_current_session -> v:oldfiles is only populated from shada at startup, so
 --                              without this, files opened in this session never appear
-map("n", "<leader>fv", function()
+map("n", "<leader>fv", with_fresh_ctx(function()
     fzf.oldfiles({ cwd_only = true, include_current_session = true })
-end, { desc = "Recent files (current project)" })
+end), { desc = "Recent files (current project)" })
 
 -- Replaces the old mini.pick <C-v> "paste last yank into the prompt" mapping.
 -- fzf runs in a terminal buffer so there is no in-prompt register paste; instead
 -- seed the ripgrep term directly via `opts.search`.
-map("n", "<leader>fy", function()
+map("n", "<leader>fy", with_fresh_ctx(function()
     fzf.live_grep({ search = vim.fn.getreg("0") })
-end, { desc = "Live grep last yank" })
+end), { desc = "Live grep last yank" })
 
-map("n", "<leader>fw", fzf.grep_cword, { desc = "Live grep word under cursor" })
-map("x", "<leader>fw", fzf.grep_visual, { desc = "Live grep selection" })
+map("n", "<leader>fw", with_fresh_ctx(fzf.grep_cword), { desc = "Live grep word under cursor" })
+map("x", "<leader>fw", with_fresh_ctx(fzf.grep_visual), { desc = "Live grep selection" })
