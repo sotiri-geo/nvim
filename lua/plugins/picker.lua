@@ -21,6 +21,10 @@ fzf.setup({
             ["ctrl-r"] = "unix-line-discard",
         }),
     },
+    -- Replace vim.ui.select (whose builtin fallback is the numbered inputlist()) with an
+    -- fzf picker — e.g. sidekick's "which CLI?" prompt and LSP code actions.
+    -- `true` is deprecated here; `{}` registers with default options.
+    ui_select = {},
 })
 
 local map = vim.keymap.set

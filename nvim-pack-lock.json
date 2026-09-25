@@ -78,6 +78,11 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": ">=0.0.0"
+    },
+    "sidekick.nvim": {
+      "rev": "53a2d3afa61e5fd2e17b270b5fa72e5493808304",
+      "src": "https://github.com/folke/sidekick.nvim",
+      "version": "2.0.0 - 3.0.0"
     }
   }
 }

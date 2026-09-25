@@ -121,6 +121,21 @@ Example: yank text with `y`, then press `<leader>fy` to grep for it. Add ` -- *.
 | `<leader>dp` | Prev Diagnostic | Jump to previous error/warning |
 | `<leader>df` | Floating Diagnostic | Show diagnostic in a floating window |
 
+### AI CLI (`sidekick.nvim`)
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>aa` | n | Toggle the last-used CLI |
+| `<leader>ac` | n | Toggle Claude |
+| `<leader>as` | n | Pick an installed CLI |
+| `<leader>ad` | n | Detach the CLI session |
+| `<leader>at` | n, x | Send the cursor position (or the selection) |
+| `<leader>af` | n | Send the current file |
+| `<leader>ap` | n, x | Pick a canned prompt (review, fix, tests…) |
+
+Sessions open in a **tmux split**, not a Neovim terminal: the global `<Esc><Esc>` terminal map
+(with `timeout` off) would otherwise swallow the `Esc` that Claude uses to interrupt. Move between
+panes with tmux's `prefix + arrow`; sessions survive restarting Neovim.
+
 ---
 
 ## 🚀 Workflows

@@ -9,6 +9,9 @@ require("mason-lspconfig").setup({
         "pyright",
         "ruff",
     },
+    -- Code must only reach the approved Claude/Gemini OAuth setup. Never auto-enable
+    -- Copilot, even if its server ever gets installed via :Mason.
+    automatic_enable = { exclude = { "copilot" } },
 })
 
 -- Lua server
