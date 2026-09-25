@@ -22,9 +22,16 @@ fzf.setup({
         }),
     },
     -- Replace vim.ui.select (whose builtin fallback is the numbered inputlist()) with an
-    -- fzf picker — e.g. sidekick's "which CLI?" prompt and LSP code actions.
-    -- `true` is deprecated here; `{}` registers with default options.
-    ui_select = {},
+    -- fzf picker. The function form is called per selection, so opts can vary by the
+    -- caller's `kind`: sidekick's short CLI/prompt lists get a window sized to fit, while
+    -- everything else (incl. LSP code actions and their preview) keeps the defaults.
+    ui_select = function(ui_opts, items)
+        if ui_opts.kind and ui_opts.kind:match("^sidekick_") then
+            -- height > 1 is in lines; +4 covers the prompt, border and header
+            return { winopts = { height = math.min(#items + 4, 20), width = 0.4 } }
+        end
+        return {}
+    end,
 })
 
 local map = vim.keymap.set
