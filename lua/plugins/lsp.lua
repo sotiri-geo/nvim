@@ -22,9 +22,16 @@ vim.lsp.config("lua_ls", {
                 globals = { "vim" },
             },
             workspace = {
-                Library = {
+                library = {
                     vim.env.VIMRUNTIME,
                 },
+            },
+            -- Insert call arguments as snippet placeholders
+            completion = {
+                callSnippet = "Replace",
+            },
+            hint = {
+                enable = true,
             },
         },
     },
@@ -40,6 +47,18 @@ vim.lsp.config("gopls", {
             },
             gofumpt = true,
             staticcheck = true,
+            -- Insert call arguments as snippet placeholders
+            usePlaceholders = true,
+            completeUnimported = true,
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            },
             analyses = {
                 unusedparams = true,
                 nilness = true,
@@ -141,12 +160,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
         set_lsp_keymap(client, "textDocument/rename", "<leader>cr", vim.lsp.buf.rename, ev.buf, "LSP: Rename symbol")
         set_lsp_keymap(client, "textDocument/codeAction", "<leader>ca", vim.lsp.buf.code_action, ev.buf, "LSP: Code action")
 
+        if client:supports_method("textDocument/inlayHint", ev.buf) then
+            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+            vim.keymap.set("n", "<leader>ch", function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+            end, { buffer = ev.buf, desc = "LSP: Toggle inlay hints" })
+        end
+
         vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { buffer = ev.buf, desc = "Diagnostic: Next" })
         vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = ev.buf, desc = "Diagnostic: Previous" })
         vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { buffer = ev.buf, desc = "Diagnostic: Show float" })
 
         -- Format and organize imports on save for Go buffers
         if client and client.name == "gopls" then
+            -- Populate struct (and generated proto) literals with zero values, or switches with enum cases
+            vim.keymap.set("n", "<leader>cf", function()
+                vim.lsp.buf.code_action({ context = { only = { "refactor.rewrite.fillStruct" } }, apply = true })
+            end, { buffer = ev.buf, desc = "Go: Fill struct" })
+            vim.keymap.set("n", "<leader>cs", function()
+                vim.lsp.buf.code_action({ context = { only = { "refactor.rewrite.fillSwitch" } }, apply = true })
+            end, { buffer = ev.buf, desc = "Go: Fill switch" })
+
             vim.api.nvim_create_autocmd("BufWritePre", {
                 buffer = ev.buf,
                 callback = function()
