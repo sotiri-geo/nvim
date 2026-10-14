@@ -117,7 +117,7 @@ Example: yank text with `y`, then press `<leader>fy` to grep for it. Add ` -- *.
 | `<leader>i` | Hover Info | Show documentation/type info |
 | `<leader>cr` | Rename | Rename symbol workspace-wide |
 | `<leader>ca` | Code Action | Show available code actions |
-| `<leader>ch` | Toggle Inlay Hints | Show/hide inline parameter names and types (on by default) |
+| `<leader>ch` | Toggle Inlay Hints | Show/hide inline parameter names and types (off by default) |
 | `<leader>cf` | Fill Struct (Go) | Populate a struct/proto literal under the cursor with zero values |
 | `<leader>cs` | Fill Switch (Go) | Add a case for every enum value to the switch under the cursor |
 | `<leader>dn` | Next Diagnostic | Jump to next error/warning |
@@ -176,8 +176,8 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 *   **Completion Menu**: Documentation for the selected item appears automatically after a short delay. The selected item is previewed inline as ghost text, but only inserted when accepted.
     *   While the completion menu is open, press **`<C-space>`** to toggle the documentation window.
 *   **Accept Selection**: While the completion menu is open, press **`<Tab>`** to select and accept the current suggestion.
-*   **Argument Placeholders**: Accepting a function in Go or Lua inserts its arguments as placeholders, e.g. `fmt.Printf(format, a...)`. With the menu closed, press **`<Tab>`** / **`<S-Tab>`** to jump to the next/previous argument. Python (pyright) only gets `()` added, since pyright doesn't send argument snippets.
-*   **Signature Help**: The function signature pops up after accepting a function or typing `(`.
+*   **Function Calls**: Accepting a function inserts `()` with the cursor inside, e.g. `fmt.Printf(|)`, and the signature popup shows the parameters. The popup also appears when typing `(`.
+*   **Snippet Fields**: When a completion does insert a snippet with fields, press **`<Tab>`** / **`<S-Tab>`** (menu closed) to jump to the next/previous field.
 *   **Auto Imports (Go)**: Accepting a symbol from an unimported package adds the import.
 *   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`<leader>i`**.
 

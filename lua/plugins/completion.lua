@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 		require("blink.cmp").setup({
             keymap = { 
                 preset = "default",
-                -- VSCode-style: accept when the menu is open, otherwise jump between argument placeholders
+                -- VSCode-style: accept when the menu is open, otherwise jump to the next snippet field
                 ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
                 ["<S-Tab>"] = { "snippet_backward", "fallback" },
             },

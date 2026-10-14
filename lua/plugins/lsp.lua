@@ -26,10 +26,6 @@ vim.lsp.config("lua_ls", {
                     vim.env.VIMRUNTIME,
                 },
             },
-            -- Insert call arguments as snippet placeholders
-            completion = {
-                callSnippet = "Replace",
-            },
             hint = {
                 enable = true,
             },
@@ -47,8 +43,6 @@ vim.lsp.config("gopls", {
             },
             gofumpt = true,
             staticcheck = true,
-            -- Insert call arguments as snippet placeholders
-            usePlaceholders = true,
             completeUnimported = true,
             hints = {
                 assignVariableTypes = true,
@@ -160,8 +154,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         set_lsp_keymap(client, "textDocument/rename", "<leader>cr", vim.lsp.buf.rename, ev.buf, "LSP: Rename symbol")
         set_lsp_keymap(client, "textDocument/codeAction", "<leader>ca", vim.lsp.buf.code_action, ev.buf, "LSP: Code action")
 
+        -- Inlay hints start hidden; toggle per buffer
         if client:supports_method("textDocument/inlayHint", ev.buf) then
-            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
             vim.keymap.set("n", "<leader>ch", function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
             end, { buffer = ev.buf, desc = "LSP: Toggle inlay hints" })
