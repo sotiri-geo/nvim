@@ -90,6 +90,18 @@ local function set_lsp_keymap(client, method, lhs, rhs, buffer, desc)
     end
 end
 
+local function documentation_float_options()
+    -- Recalculate on open so the limits follow terminal resizes. Maximums let
+    -- short docs shrink naturally; longer docs stay complete and scrollable.
+    return {
+        border = "rounded",
+        focusable = true,
+        max_width = math.max(math.min(90, math.floor(vim.o.columns * 0.6), vim.o.columns - 2), 1),
+        max_height = math.max(math.min(30, math.floor(vim.o.lines * 0.6), vim.o.lines - 4), 1),
+        wrap = true,
+    }
+end
+
 local function show_please_help(client, buffer)
     local symbol = vim.fn.expand("<cword>")
     if symbol == "" then
@@ -116,13 +128,9 @@ local function show_please_help(client, buffer)
                 return
             end
 
-            vim.lsp.util.open_floating_preview(vim.split(output, "\n", { plain = true }), "text", {
-                border = "rounded",
-                focusable = true,
-                max_height = math.max(vim.o.lines - 4, 1),
-                max_width = math.max(math.floor(vim.o.columns * 0.8), 1),
-                wrap = true,
-            })
+            local options = documentation_float_options()
+            options.focus_id = "please_rule_help"
+            vim.lsp.util.open_floating_preview(vim.split(output, "\n", { plain = true }), "text", options)
         end)
     end)
 end
@@ -148,7 +156,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 show_please_help(client, ev.buf)
             end, { buffer = ev.buf, desc = "Please: Rule help" })
         else
-            set_lsp_keymap(client, "textDocument/hover", "<leader>i", vim.lsp.buf.hover, ev.buf, "LSP: Hover info")
+            set_lsp_keymap(client, "textDocument/hover", "<leader>i", function()
+                vim.lsp.buf.hover(documentation_float_options())
+            end, ev.buf, "LSP: Hover info")
         end
 
         set_lsp_keymap(client, "textDocument/rename", "<leader>cr", vim.lsp.buf.rename, ev.buf, "LSP: Rename symbol")

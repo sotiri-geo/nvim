@@ -180,6 +180,10 @@ This config uses `blink.cmp` for autocomplete and LSP for documentation.
 *   **Snippet Fields**: When a completion does insert a snippet with fields, press **`<Tab>`** / **`<S-Tab>`** (menu closed) to jump to the next/previous field.
 *   **Auto Imports (Go)**: Accepting a symbol from an unimported package adds the import.
 *   **LSP Hover**: To see documentation/type info for the symbol under your cursor in normal mode, press **`<leader>i`**.
+    *   Hover docs and Please rule help grow with their content, up to **90 columns / 60% of the editor width** and **30 rows / 60% of the editor height**, whichever is smaller. Limits are recalculated each time the box opens.
+    *   Long lines wrap, and the complete documentation remains available. LSP docs retain Markdown/code highlighting; Please help keeps its plain-text formatting.
+    *   Press **`<leader>i`** again to focus the box, then use **`<C-d>`** / **`<C-u>`** to scroll down/up. Press **`q`** to close it.
+    *   Reference: `:help vim.lsp.buf.hover()` and `:help vim.lsp.util.open_floating_preview.Opts`.
 
 #### Populating Go structs and protos
 Generated protobuf messages are plain Go structs, so `gopls` can fill them:
