@@ -80,6 +80,12 @@ Press `<C-g>` to freeze the current result set and fuzzy-filter within it instea
 
 Reference: `:help fzf-lua`, and `:FzfLua` with no arguments to browse every available picker.
 
+#### Closing buffers from the picker
+
+In `<leader>fb`, highlight a buffer and press `<C-x>` to close it. To close several
+buffers at once, mark each one with `<Tab>` and then press `<C-x>`. The picker
+refreshes in place. Outside the picker, `<leader>x` runs `:bdelete` on the current buffer.
+
 #### Pasting into the prompt
 `fzf` runs in a terminal buffer, so a register cannot be pasted straight into the query prompt
 (`<C-v>` opens in a vertical split here). Instead the search term is seeded before the picker
